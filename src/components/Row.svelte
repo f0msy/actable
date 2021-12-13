@@ -4,14 +4,23 @@
     export let headersData;
 
     function findCellWidth (columnId) {
-        return headersData.find(e => e.id = columnId).width;
+        return headersData.find(e => e.id === columnId).width;
     };
+
+    // console.log('cells: ' + rowData.cells.length)
+    // console.log('headers: ' + headersData.length)
+    // console.log(headersData.filter(e => !rowData.cells.map(c => c.columnId).includes(e.id)));
+    const orderedCells = [];
+    headersData.forEach(h => {
+        const cell = rowData.cells.find(c => c.columnId === h.id);
+        orderedCells.push(cell);
+    });
 
 </script>
 
 <div class="ac-row">
-    {#each rowData.cells as cell}
-        <Cell cellData={cell} width={findCellWidth(cell.columnId)} />
+    {#each orderedCells as cell}
+        <Cell cellData={cell} width={findCellWidth(cell.columnId)} rowId={rowData.id} />
     {/each}
 </div>
 

@@ -1,10 +1,19 @@
 <script>
+    import { updateTableRows } from '../helpers/updateTableRows'
+    import { checkTableData } from '../services/data.service'
+
     export let cellData;
+    export let rowId;
     export let width;
 </script>
 
 <div class="ac-cell" style="min-width: {width}; background-color: {cellData.background || '#fff'};">
-    <input style="background-color: {cellData.background || '#fff'};" type="text" bind:value="{cellData.value}">
+    <input 
+    title="{cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
+    bind:value="{cellData.value}" 
+    on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}" 
+    on:change={checkTableData}
+    >
 </div> 
 
 
@@ -13,9 +22,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-right: 1px solid #f7f7f7;
+        border-right: 1px solid #e4e4e4;
         box-sizing: border-box;
-        border-bottom: 1px solid #f7f7f7;
+        border-bottom: 1px solid #e4e4e4;
     }
 
     .ac-cell > input {
@@ -29,5 +38,6 @@
         border-bottom: 0.3rem solid transparent;
         transition: all 0.3s;
         text-align: end;
+        cursor: pointer;
     }
 </style>

@@ -1,12 +1,17 @@
 <script>
    import Header from './Header.svelte';
    import Row from './Row.svelte';
+   import SaveButton from "./SaveButton.svelte";
    import { getTableData } from '../services/data.service';
+   import { tableRows } from '../stores/rows.store.js';
 
-   let data = getTableData(1);
-
+   let data = getTableData();
+   data.then(d => {
+       tableRows.set(d.rows);
+   })
 </script>
 <div class="ac-table-container">
+    <SaveButton />
     <div class="ac-table">
         {#await data}
             <p>...загрузка</p>
