@@ -15,6 +15,7 @@
         justify-content: center;
         border-right: 1px solid #f7f7f7;
         box-sizing: border-box;
+        border-bottom: 1px solid #f7f7f7;
     }
 
     .ac-cell > input {
