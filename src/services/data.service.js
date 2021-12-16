@@ -59,11 +59,10 @@ export async function checkTableData() {
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(body)
+        body: '{data:' + JSON.stringify(body) + '}'
       });
-      await response.json().then(r => {
-        alert(JSON.parse(r))
-      });
+    const result = await response.json();
+    alert(JSON.parse(result));
       
 }
 
@@ -75,10 +74,9 @@ export async function setTableData() {
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(body)
+        body: '{data:' + JSON.stringify(body) + '}'
       });
-      await response.json().then(r => {
-        alert(JSON.parse(r))
-      });
+    const result = await response.json();
+    alert(JSON.parse(result));
 }
 
