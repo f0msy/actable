@@ -7,7 +7,6 @@ export async function getTableData() {
     const result = await resp.json();
     const fixedColumnsCount = result.fixedColumnsCount;
 
-    
     result.rows.map(r => {
       let orderedCells = [];
       result.headers.forEach(h => {

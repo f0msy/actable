@@ -37,7 +37,7 @@
         </div>
         <div class="ac-table-row">
             {#each table.rows as row}
-                <Row rowData={row} headersData={table}/>
+                <Row rowData={row} tableData={table}/>
             {/each}
         </div>
 

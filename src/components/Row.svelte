@@ -4,10 +4,13 @@
     import { get } from 'svelte/store';
 
     export let rowData;
-    export let headersData;
+    export let tableData;
 
     function findCellWidth (columnId) {
-        return headersData.headers.find(e => e.id === columnId)?.width || headersData.fixedHeaders.find(e => e.id === columnId)?.width;
+        const headersWidth = tableData?.headers?.find(e => e.id === columnId)?.width;
+        const fixedHeadersWidth = tableData?.fixedHeaders?.find(e => e.id === columnId)?.width;
+        
+        return headersWidth ? headersWidth : fixedHeadersWidth;
     };
 
     rowData.fixedCells.map(c => {

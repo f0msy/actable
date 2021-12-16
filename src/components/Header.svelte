@@ -3,7 +3,7 @@
 </script>
 
 <div class="ac-header-cell" 
-style="min-width: {headerData.width}; background-color: {headerData.background}; {headerData.textColor ? 'color:' + headerData.textColor + ';': ''}" title="{headerData.name}">
+style="width: {headerData.width}; background-color: {headerData.background}; {headerData.textColor ? 'color:' + headerData.textColor + ';': ''}" title="{headerData.name}">
     <p>{headerData.name}</p>
 </div> 
 
