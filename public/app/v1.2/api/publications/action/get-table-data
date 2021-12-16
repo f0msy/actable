@@ -1,7 +1,29 @@
 {
+    "fixedColumnsCount": 5,
+    "tableName": "Таблица",
     "titles": [{
             "name": "",
-            "width": "1220px",
+            "width": "70px",
+            "background": "#1e88e5"
+        },{
+            "name": "",
+            "width": "70px",
+            "background": "#1e88e5"
+        },{
+            "name": "",
+            "width": "70px",
+            "background": "#1e88e5"
+        },{
+            "name": "",
+            "width": "210px",
+            "background": "#1e88e5"
+        },{
+            "name": "",
+            "width": "200px",
+            "background": "#1e88e5"
+        },{
+            "name": "",
+            "width": "600px",
             "background": "#1e88e5"
         }, {
             "name": "Перераспределение средств внутри ГРБС \/ Нац. (фед) проекта",

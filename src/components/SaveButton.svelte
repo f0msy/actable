@@ -2,9 +2,10 @@
     import { setTableData } from '../services/data.service.js'
 </script>
 
-<button on:click={setTableData} class="ac-table-btn">
-    Сохранить
-</button>
+    <button on:click={setTableData} class="ac-table-btn">
+        Сохранить
+    </button>
+
 
 <style>
     .ac-table-btn {
@@ -15,5 +16,6 @@
         border: none;
         background-color: #1976d2;
         color: #fff;
+        cursor: pointer;
     }
 </style>

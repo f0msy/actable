@@ -5,9 +5,10 @@
     export let cellData;
     export let rowId;
     export let width;
+    export let cellStyles = '';
 </script>
 
-<div class="ac-cell" style="min-width: {width}; background-color: {cellData.background || '#fff'};">
+<div class="ac-cell" style="min-width: {width}; background-color: {cellData.background || '#fff'}; {cellStyles}">
     <input 
     title="{cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
     bind:value="{cellData.value}" 

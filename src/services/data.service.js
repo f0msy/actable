@@ -3,7 +3,53 @@ import { get } from 'svelte/store';
 
 export async function getTableData() {
     const url = window.getTableUrl ?? '/app/v1.2/api/publications/action/get-table-data' ;
-    return await (await fetch(url)).json();
+    const resp = await fetch(url);
+    const result = await resp.json();
+    const fixedColumnsCount = result.fixedColumnsCount;
+
+    
+    result.rows.map(r => {
+      let orderedCells = [];
+      result.headers.forEach(h => {
+        const cell = r.cells.find(c => c.columnId === h.id);
+        orderedCells.push(cell);
+      });
+      r.cells = orderedCells;
+      return r
+    });
+
+    result.rows.map(r => {
+      r.fixedCells = [];
+      r.cells.map((c, i) => {
+        if(i < fixedColumnsCount) {
+          r.fixedCells.push(c);
+        }
+      })
+      r.cells = r.cells.slice(fixedColumnsCount);
+      return r
+    })
+    result.fixedHeaders = []
+    result.headers.map((h, i) => {
+      if(i < fixedColumnsCount) {
+        result.fixedHeaders.push(h)
+      }
+      return h;
+    })
+    result.headers = result.headers.slice(fixedColumnsCount);
+
+    result.fixedTitles = []
+    result.titles.map((t, i) => {
+      if(i < fixedColumnsCount) {
+        result.fixedTitles.push(t)
+      }
+      return t;
+    })
+    result.titles = result.titles.slice(fixedColumnsCount);
+
+  
+    tableRows.set(result.rows);
+
+    return result;
 }
 
 export async function checkTableData() {

@@ -1,25 +1,50 @@
 <script>
     import Cell from './Cell.svelte';
+    import { selectedRow } from '../stores/rows.store';
+    import { get } from 'svelte/store';
+
     export let rowData;
     export let headersData;
 
     function findCellWidth (columnId) {
-        return headersData.find(e => e.id === columnId).width;
+        return headersData.headers.find(e => e.id === columnId)?.width || headersData.fixedHeaders.find(e => e.id === columnId)?.width;
     };
 
-    // console.log('cells: ' + rowData.cells.length)
-    // console.log('headers: ' + headersData.length)
-    // console.log(headersData.filter(e => !rowData.cells.map(c => c.columnId).includes(e.id)));
-    const orderedCells = [];
-    headersData.forEach(h => {
-        const cell = rowData.cells.find(c => c.columnId === h.id);
-        orderedCells.push(cell);
+    rowData.fixedCells.map(c => {
+        c.width = parseInt(findCellWidth(c.columnId).replace('px', ''));
+        return c;
+    })
+
+    rowData.fixedCells.map((c, i) => {
+        if(i == 0) {
+            c.left = 0;
+            return c;
+        } 
+        c.left = rowData.fixedCells.reduce((acc, curr, index) => {
+            if(index < i) {
+                return acc + curr.width;
+            }
+            return acc;
+        }, 0)
+        return c;
+    })
+    let focused = false;
+
+    selectedRow.subscribe(v => {
+        if(v == rowData.id) {
+            focused = true;
+        } else {
+            focused = false;
+        }
     });
 
 </script>
 
-<div class="ac-row">
-    {#each orderedCells as cell}
+<div class="ac-row" class:ac-row-focused={focused} on:click="{() => selectedRow.set(rowData.id)}">
+    {#each rowData.fixedCells as cell}
+        <Cell cellData={cell} width={findCellWidth(cell.columnId)} rowId={rowData.id} cellStyles={'position: sticky; left:'+ cell.left +'px;'}/>
+    {/each}
+    {#each rowData.cells as cell}
         <Cell cellData={cell} width={findCellWidth(cell.columnId)} rowId={rowData.id} />
     {/each}
 </div>
@@ -28,5 +53,11 @@
     .ac-row {
         display: flex;
         height: 50px;
+    }
+
+    .ac-row-focused {
+        box-sizing: border-box;
+        border-bottom: 1px solid rgb(143, 143, 143);
+        border-top: 1px solid rgb(143, 143, 143);
     }
 </style>
