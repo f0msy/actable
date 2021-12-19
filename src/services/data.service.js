@@ -83,7 +83,7 @@ function parseDataFromServer(result) {
   result.rows.map((r) => {
     r.fixedCells.map((c, i) => {
       if (i == 0) {
-        c.left = 0;
+        c.left = 40;
         return c;
       }
       c.left = r.fixedCells.reduce((acc, curr, index) => {
@@ -91,7 +91,7 @@ function parseDataFromServer(result) {
           return acc + curr.width;
         }
         return acc;
-      }, 0);
+      }, 40);
       return c;
     });
     return r;

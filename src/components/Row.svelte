@@ -17,6 +17,7 @@
 </script>
 
 <div class="ac-row" class:ac-row-focused={focused} on:click="{() => selectedRow.set(rowData.id)}">
+    <div class="ac-rownum-cell">{rowData.rowId}</div>
     {#each rowData.fixedCells as cell}
         <Cell cellData={cell} rowId={rowData.id} cellStyles={'position: sticky; left:'+ cell.left +'px;'}/>
     {/each}
@@ -35,5 +36,18 @@
         box-sizing: border-box;
         border-bottom: 1px solid rgb(143, 143, 143);
         border-top: 1px solid rgb(143, 143, 143);
+    }
+
+    .ac-rownum-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #e4e4e4;
+        box-sizing: border-box;
+        border-bottom: 1px solid #e4e4e4;
+        width: 40px;
+        background-color: #c7c7c7;       
+        position: sticky;
+        left: 0
     }
 </style>
