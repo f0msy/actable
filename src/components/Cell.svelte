@@ -11,8 +11,7 @@
     <input 
     title="{cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
     bind:value="{cellData.value}" 
-    on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}" 
-    on:change={checkTableData}
+    on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
     >
 </div> 
 

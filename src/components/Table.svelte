@@ -2,6 +2,7 @@
    import Header from './Header.svelte';
    import Row from './Row.svelte';
    import SaveButton from "./SaveButton.svelte";
+   import CheckButton from "./CheckButton.svelte";
    import { getTableData, setProgressBar } from '../services/data.service';
    import { tableData } from '../stores/data.store';
 
@@ -20,6 +21,7 @@
         {:then table} 
         <div class="ac-table-header">
             <div><SaveButton /></div> 
+            <div><CheckButton /></div>
             <div class="ac-table-name">{table.tableName}</div>
         </div>
         <div class="ac-table-titles">

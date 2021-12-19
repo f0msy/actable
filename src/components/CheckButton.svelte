@@ -1,9 +1,9 @@
 <script>
-    import { setTableData } from '../services/data.service.js'
+    import { checkTableData } from '../services/data.service.js'
 </script>
 
-    <button on:click={setTableData} class="ac-table-btn">
-        Сохранить
+    <button on:click={checkTableData} class="ac-table-btn">
+        Пересчитать
     </button>
 
 
@@ -12,9 +12,9 @@
         width: 150px;
         height: 40px;
         border-radius: 8px;
-        margin: 10px;
+        margin: 10px 0;
         border: none;
-        background-color: #087f23;
+        background-color: #bc5100;
         color: #fff;
         cursor: pointer;
     }
