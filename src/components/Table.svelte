@@ -2,9 +2,16 @@
    import Header from './Header.svelte';
    import Row from './Row.svelte';
    import SaveButton from "./SaveButton.svelte";
-   import { getTableData } from '../services/data.service';
+   import { getTableData, setProgressBar } from '../services/data.service';
+   import { tableData } from '../stores/data.store';
 
    let data = getTableData();
+   tableData.subscribe(d => {
+    if(d) {
+        data = d;
+        setProgressBar('finish');
+    }
+   });
 </script>
 <div class="ac-table-container">
     <div class="ac-table">
