@@ -44,7 +44,7 @@
         </div>
         <div class="ac-table-row">
             {#each table.rows as row}
-                <Row rowData={row} tableData={table}/>
+                <Row rowData={row}/>
             {/each}
         </div>
 

@@ -4,11 +4,10 @@
 
     export let cellData;
     export let rowId;
-    export let width;
     export let cellStyles = '';
 </script>
 
-<div class="ac-cell" style="width: {width}; background-color: {cellData.background || '#fff'}; {cellStyles}">
+<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
     <input 
     title="{cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
     bind:value="{cellData.value}" 
