@@ -1719,7 +1719,8 @@
                     "value": "0200410196D724600622",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -2672,7 +2673,8 @@
                     "value": "0200411196D768581812",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -3623,7 +3625,8 @@
                     "value": "0200412166D517000622",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -4574,7 +4577,8 @@
                     "value": "0200412166D564046623",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -5525,7 +5529,8 @@
                     "value": "0200412166D564046631",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -6478,7 +6483,8 @@
                     "value": "0200412166D564046811",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -7429,7 +7435,8 @@
                     "value": "0200412193D413400244",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -8380,7 +8387,8 @@
                     "value": "0200412196D724500244",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -9333,7 +9341,8 @@
                     "value": "0530407234D672100246",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",
@@ -10284,7 +10293,8 @@
                     "value": "0540804234D673500242",
                     "canEdit": 1,
                     "type": "varchar",
-                    "background": ""
+                    "background": "",
+                    "tooltip": "Тестирование"
                 }, {
                     "columnId": "napr",
                     "value": "",

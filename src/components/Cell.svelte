@@ -9,7 +9,7 @@
 
 <div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
     <input 
-    title="{cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
+    title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
     bind:value="{cellData.value}" 
     on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
     >
