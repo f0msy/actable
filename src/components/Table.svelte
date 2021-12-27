@@ -20,9 +20,11 @@
             <p>...загрузка</p>
         {:then table} 
         <div class="ac-table-header">
-            <div><SaveButton /></div> 
-            <div><CheckButton /></div>
             <div class="ac-table-name">{table.tableName}</div>
+            <div class="ac-table-btns-container">
+                <div><CheckButton /></div>
+                <div><SaveButton /></div>     
+            </div>
         </div>
         <div class="ac-table-titles">
             <div class="ac-fixed-headers">
@@ -63,11 +65,16 @@
     }
     .ac-table-name {
         font-weight: 500;
-        font-size: 17px;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 10px;
+        margin: 0 10px;
+    }
+
+    .ac-table-btns-container {
+        display: flex;
+        margin-right: 50px;
     }
 
     .ac-fixed-headers {
@@ -85,6 +92,7 @@
         left: 0;
         z-index: 10;
         display: flex;
+        justify-content: space-between;
     }
 
     ::-webkit-scrollbar {
