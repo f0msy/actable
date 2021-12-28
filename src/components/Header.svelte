@@ -13,8 +13,8 @@ style="width: {headerData.width}; background-color: {headerData.background}; {he
         display: flex;
         align-items: center;
         justify-content: center;
-        border-right: 1px solid #e4e4e4;
-        border-bottom: 1px solid #e4e4e4;
+        border-right: 1px solid #c1c1c1;
+        border-bottom: 1px solid #c1c1c1;
         box-sizing: border-box;
         cursor: pointer;
     }
