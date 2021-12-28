@@ -21,9 +21,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-right: 1px solid #c1c1c1;
+        border-right: 1px solid #d7d7d7;
         box-sizing: border-box;
-        border-bottom: 1px solid #c1c1c1;
+        border-bottom: 1px solid #d7d7d7;
     }
 
     .ac-cell > input {
