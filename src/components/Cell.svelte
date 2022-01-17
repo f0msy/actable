@@ -5,12 +5,17 @@
     export let cellData;
     export let rowId;
     export let cellStyles = '';
+
+    function handleInput(event) {
+		cellData.value = event.target.value;
+	}
 </script>
 
 <div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
     <input 
-    title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="text" disabled={cellData.canEdit === 0}
-    bind:value="{cellData.value}" 
+    title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData.canEdit === 0}
+    on:input="{handleInput}"
+    value={cellData.value || ''}
     on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
     >
 </div> 
@@ -38,5 +43,11 @@
         transition: all 0.3s;
         text-align: end;
         cursor: pointer;
+    }
+
+    .ac-cell > input::-webkit-outer-spin-button,
+    .ac-cell > input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 </style>
