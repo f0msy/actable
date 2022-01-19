@@ -7,7 +7,12 @@
     export let cellStyles = '';
 
     function handleInput(event) {
+        if(cellData.type === 'checkbox') {
+            cellData.value = event.target.checked;
+            return;
+        }
 		cellData.value = event.target.value;
+        return;
 	}
 </script>
 
@@ -49,5 +54,12 @@
     .ac-cell > input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
+    }
+
+    input[type="date"][title=""]::-webkit-datetime-edit-year-field,
+    input[type="date"][title=""]::-webkit-datetime-edit-month-field,
+    input[type="date"][title=""]::-webkit-datetime-edit-day-field,
+    input[type="date"][title=""]::-webkit-datetime-edit-text {
+        color: transparent !important;
     }
 </style>
