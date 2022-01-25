@@ -1,24 +1,16 @@
 <script>
+   import { getTableData,setProgressBar } from '../services/data.service';
+   import { tableData } from '../stores/data.store';
+   import CheckButton from "./CheckButton.svelte";
    import Header from './Header.svelte';
    import Row from './Row.svelte';
    import SaveButton from "./SaveButton.svelte";
-   import CheckButton from "./CheckButton.svelte";
-   import { getTableData, setProgressBar, checkTableData } from '../services/data.service';
-   import { tableData } from '../stores/data.store';
 
    let data = getTableData();
-   let dataUpdated = false
    tableData.subscribe(d => {
     if(d) {
         data = d;
         setProgressBar('finish');
-
-        if(!dataUpdated) { 
-            dataUpdated = true;
-            setTimeout(() => {
-                checkTableData();
-            }, 15000);
-        }
     }
    });
 </script>

@@ -1,5 +1,10 @@
 <script>
     import { checkTableData } from '../services/data.service.js'
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        checkTableData();
+    })
 </script>
 
     <button on:click={checkTableData} class="ac-table-btn">
