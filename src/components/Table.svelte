@@ -3,14 +3,22 @@
    import Row from './Row.svelte';
    import SaveButton from "./SaveButton.svelte";
    import CheckButton from "./CheckButton.svelte";
-   import { getTableData, setProgressBar } from '../services/data.service';
+   import { getTableData, setProgressBar, checkTableData } from '../services/data.service';
    import { tableData } from '../stores/data.store';
 
    let data = getTableData();
+   let dataUpdated = false
    tableData.subscribe(d => {
     if(d) {
         data = d;
         setProgressBar('finish');
+
+        if(!dataUpdated) { 
+            dataUpdated = true;
+            setTimeout(() => {
+                checkTableData();
+            }, 15000);
+        }
     }
    });
 </script>
@@ -48,6 +56,13 @@
                 <Header headerData={header}/>
             {/each}
         </div>
+        {#if table?.totals}
+            <div class="ac-table-row ac-table-totals">
+                {#each table?.totals as total}
+                    <Row rowData={total}/>
+                {/each}
+            </div>  
+        {/if}
         <div class="ac-table-row">
             {#each table.rows as row}
                 <Row rowData={row}/>
@@ -136,6 +151,16 @@
         position: sticky;
         top: 110px;
         z-index: 10;
+    }
+
+    .ac-table-totals {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        font-weight: 500;
+        position: sticky;
+        top: 160px;
+        z-index: 10 !important;
     }
 
     .ac-table-row { 

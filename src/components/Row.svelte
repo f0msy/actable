@@ -7,7 +7,7 @@
     let focused = false;
 
     selectedRow.subscribe(v => {
-        if(v == rowData.id) {
+        if(v == rowData?.id) {
             focused = true;
         } else {
             focused = false;
@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="ac-row" class:ac-row-focused={focused} on:click="{() => selectedRow.set(rowData.id)}">
+<div class="ac-row" class:ac-row-focused={focused} on:click="{() => selectedRow.set(rowData?.id)}">
     <div class="ac-rownum-cell">{rowData.rowId}</div>
     {#each rowData.fixedCells as cell}
         <Cell cellData={cell} rowId={rowData.id} cellStyles={'position: sticky; left:'+ cell.left +'px;'}/>

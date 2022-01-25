@@ -39,6 +39,30 @@ function parseDataFromServer(result) {
     r.cells = r.cells.slice(fixedColumnsCount);
     return r;
   });
+
+  if(result?.totals) {
+    result.totals.map((t) => {
+      let orderedCells = [];
+      result.headers.forEach((h) => {
+        const cell = t.cells.find((c) => c.columnId === h.id);
+        orderedCells.push(cell);
+      });
+      t.cells = orderedCells;
+      return t;
+    });
+
+    result.totals.map((t) => {
+      t.fixedCells = [];
+      t.cells.map((c, i) => {
+        if (i < fixedColumnsCount) {
+          t.fixedCells.push(c);
+        }
+      });
+      t.cells = t.cells.slice(fixedColumnsCount);
+      return t;
+    });
+  }
+
   result.fixedHeaders = [];
   result.headers.map((h, i) => {
     if (i < fixedColumnsCount) {
@@ -96,6 +120,39 @@ function parseDataFromServer(result) {
     });
     return r;
   });
+
+  if(result?.totals) { 
+    result.totals.map((t) => {
+      t.cells.map((c) => {
+        c.width = parseInt(findCellWidth(c.columnId).replace('px', ''));
+        return c;
+      });
+  
+      t.fixedCells.map((c) => {
+        c.width = parseInt(findCellWidth(c.columnId).replace('px', ''));
+        return c;
+      });
+  
+      return t;
+    });
+  
+    result.totals.map((t) => {
+      t.fixedCells.map((c, i) => {
+        if (i == 0) {
+          c.left = 40;
+          return c;
+        }
+        c.left = t.fixedCells.reduce((acc, curr, index) => {
+          if (index < i) {
+            return acc + curr.width;
+          }
+          return acc;
+        }, 40);
+        return c;
+      });
+      return t;
+    });
+  }
 
   tableRows.set(result.rows);
   tableData.set(result);
