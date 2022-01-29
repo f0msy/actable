@@ -14,13 +14,25 @@
 		cellData.value = event.target.value;
         return;
 	}
+
+    function parseValue(value) {
+        if(!value) {
+            return '';
+        }
+
+        if(value === '0' && cellData.type === 'number') {
+            return '';
+        }
+
+        return value;
+    }
 </script>
 
 <div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
     <input 
     title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
     on:input="{handleInput}"
-    value={cellData.value || ''}
+    value={parseValue(cellData.value)}
     on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
     >
 </div> 
