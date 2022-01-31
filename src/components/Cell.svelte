@@ -5,6 +5,7 @@
     export let cellData;
     export let rowId;
     export let cellStyles = '';
+    let isEditing = false;
 
     function handleInput(event) {
         if(cellData.type === 'checkbox') {
@@ -26,15 +27,33 @@
 
         return value;
     }
+
+    function formatNumber(value) {
+        if(value) {
+            value = parseFloat(value);
+            return value.toLocaleString();
+        }
+        return value;
+    }
 </script>
 
-<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
-    <input 
-    title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
-    on:input="{handleInput}"
-    value={parseValue(cellData.value)}
-    on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
-    >
+<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}" on:blur="{() => isEditing = !isEditing}">
+    {#if (isEditing && cellData.type === 'number') || cellData.type !== 'number'}
+        <input
+        title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
+        on:input="{handleInput}"
+        value={parseValue(cellData.value)}
+        on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
+        >
+    {/if}
+
+    {#if !isEditing && cellData.type === 'number'}
+        <input
+        title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
+        value={formatNumber(cellData.value)}
+        >
+    {/if}
+
 </div> 
 
 
