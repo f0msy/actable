@@ -21,7 +21,7 @@
             return '';
         }
 
-        if(value === '0' && cellData.type === 'number') {
+        if(value === '0' && cellData.type === 'number' && !cellData?.canEdit) {
             return '';
         }
 
@@ -29,8 +29,12 @@
     }
 
     function formatNumber(value) {
-        if(!value || value === '0') {
-        return '';
+        if(!value) {
+            return '';
+        }
+
+        if((value === '0' || value === '0.0') && !cellData?.canEdit) {
+            return '';
         }
 
         if(value) {
