@@ -29,31 +29,53 @@
     }
 
     function formatNumber(value) {
+        if(!value || value === '0') {
+        return '';
+        }
+
         if(value) {
-            value = parseFloat(value);
-            return value.toLocaleString();
+            return parseFloat(value).toLocaleString();
         }
         return value;
     }
 </script>
 
-<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}" on:blur="{() => isEditing = !isEditing}">
-    {#if (isEditing && cellData.type === 'number') || cellData.type !== 'number'}
+<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
+    {#if cellData.type !== 'number'}
         <input
-        title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
-        on:input="{handleInput}"
+        title="{cellData?.tooltip || cellData.value}" 
+        style="background-color: {cellData.background || '#fff'};" 
+        type="{cellData.type || 'text'}" 
+        disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
         value={parseValue(cellData.value)}
-        on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"
+        on:input="{handleInput}"
+        on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"        
+        >
+    {/if}
+
+    {#if isEditing && cellData.type === 'number'}
+        <input
+        title="{cellData?.tooltip || cellData.value}" 
+        style="background-color: {cellData.background || '#fff'};" 
+        type="number" 
+        disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
+        value={parseValue(cellData.value)}
+        on:input="{handleInput}"
+        on:blur="{() => isEditing = false}"
+        on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"        
         >
     {/if}
 
     {#if !isEditing && cellData.type === 'number'}
         <input
-        title="{cellData?.tooltip || cellData.value}" style="background-color: {cellData.background || '#fff'};" type="{cellData.type || 'text'}" disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
+        title="{cellData?.tooltip || cellData.value}" 
+        style="background-color: {cellData.background || '#fff'};" 
+        type="text" 
+        disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
         value={formatNumber(cellData.value)}
+        on:focus="{() => isEditing = true}"
         >
     {/if}
-
 </div> 
 
 
