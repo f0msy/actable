@@ -21,7 +21,7 @@
             return '';
         }
 
-        if(value === '0' && cellData.type === 'number' && !cellData?.canEdit) {
+        if(value === '0' && cellData.type === 'number' && cellData?.canEdit) {
             return '';
         }
 
@@ -33,7 +33,7 @@
             return '';
         }
 
-        if((value === '0' || value === '0.0') && !cellData?.canEdit) {
+        if((value === '0' || value === '0.0') && cellData?.canEdit) {
             return '';
         }
 
