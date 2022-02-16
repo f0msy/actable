@@ -44,7 +44,7 @@
     }
 </script>
 
-<div class="ac-cell" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
+<div class="ac-cell {cellData.type === 'text' ? 'ac-cell-align-left' : ''}" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
     {#if cellData.type !== 'number'}
         <input
         title="{cellData?.tooltip || cellData.value}" 
@@ -118,5 +118,9 @@
     input[type="date"][title=""]::-webkit-datetime-edit-day-field,
     input[type="date"][title=""]::-webkit-datetime-edit-text {
         color: transparent !important;
+    }
+
+    .ac-cell-align-left > input {
+            text-align: start !important;      
     }
 </style>
