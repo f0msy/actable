@@ -61,6 +61,16 @@
             {/each}
         </div>
 
+        {:catch error}
+        <div class="ac-table-error-block">
+
+            <div class="ac-table-name">Ошибка загрузки данных</div>
+            <div class="ac-table-error-message"> 
+                <p style="color: red">{error.message}</p>
+            </div>
+
+        </div>
+
         {/await}
     </div>
 </div>
@@ -171,5 +181,20 @@
         width: 40px;
         z-index: 10;
         background-color: #e5e5e5;
+    }
+
+    .ac-table-error-block {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100%;
+    }
+    .ac-table-error-block .ac-table-error-message {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+    .ac-table-error-block .ac-table-error-message p{
+        margin: 0;
     }
 </style>

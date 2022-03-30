@@ -45,7 +45,7 @@
 </script>
 
 <div class="ac-cell {cellData.type === 'text' ? 'ac-cell-align-left' : ''}" style="width: {cellData.width}px; background-color: {cellData.background || '#fff'}; {cellStyles}">
-    {#if cellData.type !== 'number'}
+    {#if cellData.type !== 'number' && cellData.type !== 'checkbox'}
         <input
         title="{cellData?.tooltip || cellData.value}" 
         style="background-color: {cellData.background || '#fff'};" 
@@ -57,6 +57,18 @@
         >
     {/if}
 
+    {#if cellData.type == 'checkbox'}
+        <input
+        title="{cellData?.tooltip || cellData.value}" 
+        style="background-color: {cellData.background || '#fff'};" 
+        type="checkbox" 
+        disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
+        checked={cellData.value}
+        on:input="{handleInput}"
+        on:change="{e => updateTableRows(e.target.checked, cellData.columnId, rowId)}"        
+        >
+    {/if}
+
     {#if isEditing && cellData.type === 'number'}
         <input
         title="{cellData?.tooltip || cellData.value}" 
@@ -64,6 +76,7 @@
         type="number" 
         disabled={cellData?.canEdit === 0 || !cellData?.canEdit}
         value={parseValue(cellData.value)}
+        autofocus
         on:input="{handleInput}"
         on:blur="{() => isEditing = false}"
         on:keyup="{e => updateTableRows(e.target.value, cellData.columnId, rowId)}"        
